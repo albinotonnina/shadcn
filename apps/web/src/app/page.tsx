@@ -8,11 +8,27 @@ import {
   GradientCardFooter,
 } from "@/components/ui/gradient-card";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
-import { Sparkles, Zap, Rocket, Heart } from "lucide-react";
+import { Sparkles, Zap, Rocket, Heart, Github } from "lucide-react";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
+      {/* Header with GitHub Link */}
+      <header className="border-b bg-white dark:bg-slate-950 sticky top-0 z-50">
+        <div className="container flex items-center justify-between h-16">
+          <h2 className="font-bold text-lg">shadcn Registry</h2>
+          <a
+            href="https://github.com/albinotonnina/shadcn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            <Github size={20} />
+            <span className="text-sm font-medium">GitHub</span>
+          </a>
+        </div>
+      </header>
+
       {/* Hero Section */}
       <section className="container py-20">
         <div className="text-center space-y-4 mb-16">
