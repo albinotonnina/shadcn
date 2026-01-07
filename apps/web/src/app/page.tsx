@@ -41,10 +41,10 @@ export default function Home() {
           </p>
           <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
             <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full">
-              Registry: localhost:3001
+              Registry: https://shadcn-registry-tan.vercel.app/r
             </span>
             <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full">
-              App: localhost:3000
+              App: https://shadcn-web-six.vercel.app
             </span>
           </div>
         </div>
