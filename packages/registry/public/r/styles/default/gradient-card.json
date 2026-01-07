@@ -1,0 +1,37 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "gradient-card",
+  "type": "registry:ui",
+  "title": "Gradient Card",
+  "description": "A card component with beautiful gradient borders and optional animations",
+  "dependencies": ["class-variance-authority"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/gradient-card.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\n\nconst gradientCardVariants = cva(\n  \"relative rounded-xl p-[2px] transition-all duration-300\",\n  {\n    variants: {\n      gradient: {\n        rainbow:\n          \"bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500\",\n        sunset: \"bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500\",\n        ocean: \"bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500\",\n        forest: \"bg-gradient-to-r from-green-400 via-emerald-500 to-teal-600\",\n        fire: \"bg-gradient-to-r from-yellow-500 via-orange-500 to-red-600\",\n        aurora:\n          \"bg-gradient-to-r from-green-400 via-cyan-500 via-blue-500 to-purple-600\",\n      },\n      animated: {\n        true: \"animate-gradient-x bg-[length:200%_200%]\",\n        false: \"\",\n      },\n      hover: {\n        glow: \"hover:shadow-lg hover:shadow-current/25\",\n        scale: \"hover:scale-[1.02]\",\n        both: \"hover:shadow-lg hover:shadow-current/25 hover:scale-[1.02]\",\n        none: \"\",\n      },\n    },\n    defaultVariants: {\n      gradient: \"rainbow\",\n      animated: false,\n      hover: \"none\",\n    },\n  }\n);\n\nexport interface GradientCardProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof gradientCardVariants> {\n  /** Content wrapper class for the inner card */\n  innerClassName?: string;\n}\n\nconst GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(\n  (\n    {\n      className,\n      innerClassName,\n      gradient,\n      animated,\n      hover,\n      children,\n      ...props\n    },\n    ref\n  ) => {\n    return (\n      <div\n        ref={ref}\n        className={cn(\n          gradientCardVariants({ gradient, animated, hover }),\n          className\n        )}\n        {...props}\n      >\n        <div\n          className={cn(\n            \"rounded-[10px] bg-background p-6 h-full\",\n            innerClassName\n          )}\n        >\n          {children}\n        </div>\n      </div>\n    );\n  }\n);\nGradientCard.displayName = \"GradientCard\";\n\n// Card subcomponents for better composition\nconst GradientCardHeader = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"flex flex-col space-y-1.5 pb-4\", className)}\n    {...props}\n  />\n));\nGradientCardHeader.displayName = \"GradientCardHeader\";\n\nconst GradientCardTitle = React.forwardRef<\n  HTMLHeadingElement,\n  React.HTMLAttributes<HTMLHeadingElement>\n>(({ className, ...props }, ref) => (\n  <h3\n    ref={ref}\n    className={cn(\"text-2xl font-bold leading-none tracking-tight\", className)}\n    {...props}\n  />\n));\nGradientCardTitle.displayName = \"GradientCardTitle\";\n\nconst GradientCardDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <p\n    ref={ref}\n    className={cn(\"text-sm text-muted-foreground\", className)}\n    {...props}\n  />\n));\nGradientCardDescription.displayName = \"GradientCardDescription\";\n\nconst GradientCardContent = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn(\"py-2\", className)} {...props} />\n));\nGradientCardContent.displayName = \"GradientCardContent\";\n\nconst GradientCardFooter = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"flex items-center pt-4\", className)}\n    {...props}\n  />\n));\nGradientCardFooter.displayName = \"GradientCardFooter\";\n\nexport {\n  GradientCard,\n  GradientCardHeader,\n  GradientCardTitle,\n  GradientCardDescription,\n  GradientCardContent,\n  GradientCardFooter,\n  gradientCardVariants,\n};\n"
+    }
+  ],
+  "tailwind": {
+    "config": {
+      "theme": {
+        "extend": {
+          "animation": {
+            "gradient-x": "gradient-x 3s ease infinite"
+          },
+          "keyframes": {
+            "gradient-x": {
+              "0%, 100%": { "background-position": "0% 50%" },
+              "50%": { "background-position": "100% 50%" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  }
+}

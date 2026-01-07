@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "custom-registry",
+  "homepage": "http://localhost:3001",
+  "items": [
+    {
+      "name": "fancy-button",
+      "type": "registry:ui",
+      "title": "Fancy Button",
+      "description": "A button with gradient backgrounds and hover animations"
+    },
+    {
+      "name": "gradient-card",
+      "type": "registry:ui",
+      "title": "Gradient Card", 
+      "description": "A card component with beautiful gradient borders"
+    },
+    {
+      "name": "animated-counter",
+      "type": "registry:ui",
+      "title": "Animated Counter",
+      "description": "A number counter with smooth animations"
+    }
+  ]
+}

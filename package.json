@@ -1,0 +1,17 @@
+{
+  "name": "shadcn-custom-registry",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel run dev",
+    "dev:registry": "pnpm --filter @shadcn/registry dev",
+    "dev:web": "pnpm --filter @shadcn/web dev",
+    "build": "pnpm --parallel run build",
+    "lint": "pnpm --parallel run lint"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
