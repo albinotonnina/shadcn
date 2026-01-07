@@ -4,14 +4,13 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "esModuleInterop": true,
-    "strict": false,
+    "strict": true,
     "skipLibCheck": true,
     "outDir": "dist",
-    "rootDir": ".",
-    "declaration": false,
+    "declaration": true,
     "resolveJsonModule": true,
-    "noEmit": true
+    "noEmit": false
   },
-  "include": ["api/**/*"],
-  "exclude": ["node_modules", "dist", "registry", "public", "src"]
+  "include": ["api/**/*", "src/**/*"],
+  "exclude": ["node_modules", "dist", "registry/**/*", "public/**/*"]
 }
