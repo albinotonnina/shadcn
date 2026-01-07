@@ -162,15 +162,63 @@ npx shadcn@latest add custom/gradient-card custom/animated-counter
 }
 ```
 
-## 🚢 Deploying the Registry
+## 🚢 Deploying to Vercel
 
-The registry server can be deployed anywhere that runs Node.js:
+This monorepo is set up for Vercel deployment. You'll deploy **two separate projects**:
 
-- **Vercel**: Convert to serverless functions
-- **Railway/Render**: Deploy as-is
-- **Static hosting**: Generate static JSON files
+### 1. Deploy the Registry Server
 
-For production, update the registry URL in your projects' `components.json`.
+```bash
+cd packages/registry
+vercel
+```
+
+Or via Vercel Dashboard:
+1. Import the repo → Set **Root Directory** to `packages/registry`
+2. Framework: **Other**
+3. Deploy
+
+Your registry will be at: `https://your-registry.vercel.app`
+
+### 2. Deploy the Next.js App
+
+```bash
+cd apps/web
+vercel
+```
+
+Or via Vercel Dashboard:
+1. Import the repo → Set **Root Directory** to `apps/web`
+2. Framework: **Next.js** (auto-detected)
+3. Deploy
+
+### 3. Update Registry URL for Production
+
+After deploying the registry, update `apps/web/components.json`:
+
+```json
+{
+  "registries": {
+    "custom": {
+      "url": "https://your-registry.vercel.app/r"
+    }
+  }
+}
+```
+
+### Environment Variables
+
+| Project | Variable | Value |
+|---------|----------|-------|
+| `apps/web` | `NEXT_PUBLIC_REGISTRY_URL` | `https://your-registry.vercel.app` |
+
+### Vercel Project Structure
+
+```
+Vercel Dashboard
+├── your-registry      (packages/registry)  → https://your-registry.vercel.app
+└── your-web-app       (apps/web)           → https://your-app.vercel.app
+```
 
 ## 📚 Learn More
 
