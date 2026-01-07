@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "echo 'No build step required - serverless functions only'",
   "rewrites": [
     { "source": "/(.*)", "destination": "/api" }
   ],
@@ -12,7 +13,5 @@
         { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
       ]
     }
-  ],
-  "outputDirectory": "public",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./api ./src"
+  ]
 }
