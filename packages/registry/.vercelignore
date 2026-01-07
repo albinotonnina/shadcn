@@ -1,0 +1,7 @@
+registry/
+public/
+src/
+dist/
+node_modules/
+*.log
+.env*
