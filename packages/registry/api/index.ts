@@ -15,11 +15,11 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).end();
   }
 
-  // Get the original URL path (before rewrite)
-  const path = req.url || '/';
+  // Parse query parameters for the path
+  const requestedPath = req.query.path as string || '/';
 
   // Health check
-  if (path === '/health' || path === '/' || path === '/api') {
+  if (requestedPath === '/' || requestedPath === 'health') {
     return res.json({ 
       status: 'ok', 
       timestamp: new Date().toISOString(),
@@ -35,7 +35,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // Registry index
-  if (path === '/r/index.json') {
+  if (requestedPath === 'r/index.json') {
     const indexPath = join(PUBLIC_PATH, 'r', 'index.json');
     
     if (!existsSync(indexPath)) {
@@ -51,7 +51,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // Component manifest: /r/styles/:style/:component.json
-  const stylesMatch = path.match(/^\/r\/styles\/([^/]+)\/([^/]+)\.json$/);
+  const stylesMatch = requestedPath.match(/^r\/styles\/([^/]+)\/([^/]+)\.json$/);
   if (stylesMatch) {
     const [, style, component] = stylesMatch;
     const manifestPath = join(PUBLIC_PATH, 'r', 'styles', style, `${component}.json`);
@@ -71,7 +71,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // Colors: /r/colors/:base/:name.json
-  const colorsMatch = path.match(/^\/r\/colors\/([^/]+)\/([^/]+)\.json$/);
+  const colorsMatch = requestedPath.match(/^r\/colors\/([^/]+)\/([^/]+)\.json$/);
   if (colorsMatch) {
     const [, base, name] = colorsMatch;
     const colorPath = join(PUBLIC_PATH, 'r', 'colors', base, `${name}.json`);

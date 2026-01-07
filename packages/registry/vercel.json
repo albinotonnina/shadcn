@@ -3,12 +3,11 @@
   "buildCommand": "echo 'No build step required - serverless functions only'",
   "installCommand": "pnpm install",
   "framework": null,
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/api" }
-  ],
+  "cleanUrls": true,
+  "trailingSlash": false,
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/api/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
         { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" },
