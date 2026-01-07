@@ -15,15 +15,22 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).end();
   }
 
-  const { url } = req;
-  const path = url?.replace(/^\/api/, '') || '/';
+  // Get the original URL path (before rewrite)
+  const path = req.url || '/';
 
   // Health check
-  if (path === '/health' || path === '/') {
+  if (path === '/health' || path === '/' || path === '/api') {
     return res.json({ 
       status: 'ok', 
       timestamp: new Date().toISOString(),
-      message: 'shadcn Custom Registry Server'
+      message: 'shadcn Custom Registry Server',
+      endpoints: [
+        '/health',
+        '/r/index.json',
+        '/r/styles/default/fancy-button.json',
+        '/r/styles/default/gradient-card.json',
+        '/r/styles/default/animated-counter.json'
+      ]
     });
   }
 
