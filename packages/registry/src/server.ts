@@ -73,7 +73,7 @@ app.get('/r/styles/:style/:component.json', (req, res) => {
  * GET /r/registry/:path
  */
 app.get('/r/registry/*', (req, res) => {
-  const filePath = req.params[0];
+  const filePath = (req.params as Record<string, string>)[0];
   const fullPath = join(REGISTRY_PATH, filePath);
   
   if (!existsSync(fullPath)) {
